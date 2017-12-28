@@ -1,8 +1,8 @@
 const SHA256 = require('crypto-js/sha256')
 
 class Block {
-    constructor(timestamp, data, previousHash) {
-        this.index = 0;
+    constructor(index, timestamp, data, previousHash) {
+        this.index = index;
         this.timestamp = timestamp;
         this.data = data;
         this.previousHash = previousHash;
@@ -14,20 +14,14 @@ class Block {
         return SHA256(this.index + this.previousHash + this.timestamp + this.data + this.nonce).toString();
     }
 
-    // mineBlock(difficulty) {
-    //     while(this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
-    //         this.nonce++;
-    //         this.hash = this.calculateHash();
-    //     }
+    mineBlock(difficulty) {
 
-    //     console.log("Block mined: " + this.hash);
-    // }
+    }
 }
 
 class Blockchain{
     constructor() {
         this.chain = [this.createGenesis()];
-        // this.difficulty = 3;
     }
 
     createGenesis() {
@@ -39,10 +33,8 @@ class Blockchain{
     }
 
     addBlock(newBlock){
-        newBlock.index = this.latestBlock().index + 1;
         newBlock.previousHash = this.latestBlock().hash;
         newBlock.hash = newBlock.calculateHash();
-        // newBlock.mineBlock(this.  difficulty);
         this.chain.push(newBlock);
     }
 
@@ -52,9 +44,6 @@ class Blockchain{
             const previousBlock = this.chain[i - 1];
 
             if (currentBlock.hash !== currentBlock.calculateHash()) {
-                console.log("Error in 1 " + "index is " + i);
-                console.log(currentBlock.hash);
-                console.log(currentBlock.calculateHash());
                 return false;
             }
 
@@ -67,7 +56,6 @@ class Blockchain{
     }
 }
 
-
 let jsChain = new Blockchain();
 jsChain.addBlock(new Block("12/25/2017", {amount: 5}));
 jsChain.addBlock(new Block("12/26/2017", {amount: 10}));
@@ -75,15 +63,3 @@ jsChain.addBlock(new Block("12/26/2017", {amount: 10}));
 
 console.log(JSON.stringify(jsChain, null, 4));
 console.log("Is blockchain valid? " + jsChain.checkValid());
-
-
-
-
-// jsChain.chain[1].data = {amount: 100};
-// jsChain.chain[1].hash = jsChain.chain[1].calculateHash();
-// jsChain.chain[2].previousHash = jsChain.chain[1].hash;
-// jsChain.chain[2].hash = jsChain.chain[2].calculateHash();
-
-// console.log(JSON.stringify(jsChain, null, 4));
-// console.log("Is blockchain valid? " + jsChain.checkValid());
-// console.log("Your Blockchain is now tampered with")
