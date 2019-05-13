@@ -1,0 +1,23 @@
+{
+  "name": "js-blockchain-pt1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "crypto-js": "^3.1.9-1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pierroberto/js-blockchain-pt1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pierroberto/js-blockchain-pt1/issues"
+  },
+  "homepage": "https://github.com/pierroberto/js-blockchain-pt1#readme"
+}
